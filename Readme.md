@@ -177,13 +177,13 @@ int multiply(int a, int b) {
 }
 ```
 
-### 📌 Why Multi-Shot Prompting?
+###  Why Multi-Shot Prompting?
 
 * Gives the AI **multiple reference patterns** to ensure consistent results.
 * Helps in **complex tasks** where one example isn’t enough.
 * Reduces errors and improves **accuracy of code reviews**.
 
-## 🎯 Dynamic Prompting  
+##  Dynamic Prompting  
 
 In AlgoSage, we use **Dynamic Prompting**, where the prompt is automatically adapted based on the **user’s input context** (e.g., programming language, code style, or desired output format).  
 This makes the system **flexible and personalized**, instead of relying on fixed instructions.  
@@ -231,8 +231,10 @@ Expected Output:
 }
 ```
 
-### 📌 Why Dynamic Prompting?
+###  Why Dynamic Prompting?
 
 * Automatically adapts prompts to **any programming language**.
 * Makes the system more **scalable and user-specific**.
 * Reduces manual work while ensuring **consistent structured outputs**.
+
+
