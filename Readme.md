@@ -207,7 +207,7 @@ If the user provides **Python code**:
 
 ```python
 def divide(a, b):
-    return a * b  # intended to be division
+    return a + b  # intended to be division
 ```
 
 The dynamically generated prompt becomes:
