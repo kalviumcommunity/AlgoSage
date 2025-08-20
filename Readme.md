@@ -365,7 +365,6 @@ for test in dataset:
 ---
 
 ### ✅ Why This Setup?
-
 * Ensures **objective evaluation** of AI outputs.
 * Provides **clear metrics** on accuracy and reliability.
 * Makes the pipeline **reproducible** for future improvements.
