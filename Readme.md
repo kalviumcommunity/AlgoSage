@@ -240,7 +240,7 @@ Expected Output:
 
 ## 🎯 Chain-of-Thought Prompting  
 
-In CodeSage, we apply **Chain-of-Thought (CoT) Prompting**, where the AI is encouraged to **reason step by step** before providing the final answer.  
+In algoSage, we apply **Chain-of-Thought (CoT) Prompting**, where the AI is encouraged to **reason step by step** before providing the final answer.  
 This helps the system explain *why* a piece of code is incorrect, not just point out the issue.  
 
 ### 🔹 Chain-of-Thought Prompt  
@@ -280,3 +280,92 @@ def is_even(n):
 * Ensures **deeper reasoning** behind feedback.
 * Reduces **false positives/negatives** in bug detection.
 * Provides **explainable AI** code reviews with accurate fixes.
+
+
+
+## 🧪 Evaluation Dataset & Testing Framework  
+
+To ensure **CodeSage** works reliably, we created an **evaluation pipeline** with:  
+- A dataset of **5+ sample code snippets**  
+- A **judge prompt** to compare AI output with expected results  
+- A lightweight **testing framework** to run all cases  
+
+---
+
+### 📂 Evaluation Dataset (5 Samples)  
+
+```json
+[
+  {
+    "id": 1,
+    "language": "Python",
+    "code": "def add(a, b): return a - b",
+    "expected": "Bug: subtraction instead of addition"
+  },
+  {
+    "id": 2,
+    "language": "JavaScript",
+    "code": "function isPositive(n) { return n < 0; }",
+    "expected": "Bug: returns true for negative numbers"
+  },
+  {
+    "id": 3,
+    "language": "Java",
+    "code": "boolean isEven(int n) { return n % 2 == 1; }",
+    "expected": "Bug: detects odd numbers instead of even"
+  },
+  {
+    "id": 4,
+    "language": "C++",
+    "code": "int divide(int a, int b) { return a / b; }",
+    "expected": "Edge Case: No handling of division by zero"
+  },
+  {
+    "id": 5,
+    "language": "Python",
+    "code": "def factorial(n): return n * factorial(n-1)",
+    "expected": "Bug: No base case, leads to infinite recursion"
+  }
+]
+````
+
+---
+
+### 🧑‍⚖️ Judge Prompt
+
+```text
+You are a judge. Compare the model's output with the expected result.  
+Evaluation Parameters:  
+1. **Correctness** – Did the model identify the main bug?  
+2. **Completeness** – Did it also suggest a meaningful fix?  
+3. **Format** – Is the response in the required JSON structure?  
+4. **Clarity** – Is the feedback understandable?  
+
+Return: Pass / Fail with justification.
+```
+
+---
+
+### ⚙️ Testing Framework Setup
+
+We built a **simple test runner** that:
+
+1. Iterates over all dataset samples.
+2. Sends each code snippet to the model.
+3. Captures the AI output and passes it to the **judge prompt**.
+4. Logs results as ✅ Pass / ❌ Fail with explanations.
+
+```python
+for test in dataset:
+    ai_output = run_model(test["code"])
+    verdict = judge(ai_output, test["expected"])
+    print(f"Test {test['id']}: {verdict}")
+```
+
+---
+
+### ✅ Why This Setup?
+
+* Ensures **objective evaluation** of AI outputs.
+* Provides **clear metrics** on accuracy and reliability.
+* Makes the pipeline **reproducible** for future improvements.
