@@ -285,7 +285,7 @@ def is_even(n):
 
 ## 🧪 Evaluation Dataset & Testing Framework  
 
-To ensure **CodeSage** works reliably, we created an **evaluation pipeline** with:  
+To ensure **AlgoSage** works reliably, we created an **evaluation pipeline** with:  
 - A dataset of **5+ sample code snippets**  
 - A **judge prompt** to compare AI output with expected results  
 - A lightweight **testing framework** to run all cases  
